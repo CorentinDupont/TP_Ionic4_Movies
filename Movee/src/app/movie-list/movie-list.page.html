@@ -1,0 +1,73 @@
+<!--
+  Generated template for the MovieListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<!-- Header -->
+<ion-header>
+  <ion-navbar class="custom-header">
+    <ion-title>
+        Tous les films
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Search bar block -->
+  <div class="search-bar-block">
+    <ion-searchbar (ionInput)="onChange($event)" debounce="1000"></ion-searchbar>
+    <button ion-button clear icon-only (click)="scanCode()">
+      <ion-icon name="qr-scanner" color="primary"></ion-icon>
+    </button>
+  </div>
+  
+  <!-- Error display block -->
+  <span *ngIf="movieGetter.moviesList.length == 0">
+    <ion-card>
+      <ion-card-title class="custom-ion-card-title">Erreur</ion-card-title>
+      <ion-card-content>
+        <p>
+          Il y a possiblement trop de film, veuillez affinez votre recherche. SI le problème persiste, veuillez vérifier votre connexion internet.
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </span>
+
+  <!-- Movies grid -->
+  <ion-grid>
+    <ion-row>
+
+      <!-- For each movies from the provider -->
+      <ion-col col-6 *ngFor="let movie of movieGetter.moviesList" class="movie-column">
+
+        <!-- One card -->
+        <ion-card (click)="showMovie(movie)" class="movie-card">
+          <img [src]="movie.poster"/>
+          <ion-card-content>
+            <p class="card-title">
+              {{movie.title}}
+              </p>
+            <p>
+              <span *ngIf="movie.genre">{{movie.genre | getFirstGenre }} - </span>
+              {{movie.year}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <!-- Loading modal -->
+  <loading *ngIf="movieGetter.isLoading"></loading>
+
+
+  <!-- Infinite scroll block -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more movies..."></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+</ion-content>
