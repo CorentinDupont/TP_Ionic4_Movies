@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, Events, AlertController } from '@ionic/angular';
+import { NavController, Events, AlertController } from '@ionic/angular';
 import { MovieGetterService } from '../movie-getter.service';
 import { MovieComponent } from '../movie/movie.component'
 import { ShowMoviePage } from '../show-movie/show-movie.page';
@@ -30,7 +30,7 @@ export class MovieListPage {
   // Constructor
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams, 
+    // public navParams: NavParams, 
     public movieGetter : MovieGetterService, 
     private barcodeScanner: BarcodeScanner, 
     private moviesServiceService: MovieServiceService, 

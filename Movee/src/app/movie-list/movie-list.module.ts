@@ -6,6 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { MovieListPage } from './movie-list.page';
+import { LoadingComponent } from '../loading/loading.component';
+
+import { GetFirstGenrePipe } from '../get-first-genre.pipe';
 
 const routes: Routes = [
   {
@@ -19,8 +22,12 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [MovieListPage]
+  declarations: [
+    MovieListPage,
+    GetFirstGenrePipe,
+    LoadingComponent,
+  ]
 })
 export class MovieListPageModule {}
